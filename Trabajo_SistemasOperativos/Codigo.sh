@@ -38,7 +38,8 @@ MostrarContenidoArchivo(){
 GenerarCopiaDelArchivo(){
   archivo=$1
   archivoCopia="CopiaArchivo.txt"
-  archivoCopia1="TextoFinal.txt"
+  archivoCopia1="CopiaArchivo1.txt"
+  archivoFinal="TextoFinal.txt"
 
   cp "$archivo" "$archivoCopia"
   # Se llama a la funcion VerificarSiExisteArchivo, para comprobar que se ha creado el archivo copia.
@@ -51,18 +52,40 @@ GenerarCopiaDelArchivo(){
   cp "$archivoCopia" "$archivoCopia1" 
 
   awk '{print tolower($0)}' "$archivoCopia" > "$archivoCopia1"
+  VerificarSiExisteArchivo "$archivoCopia1"
+  cat CopiaArchivo1.txt | tr -d '.,:;¿?¡!+-_*"(){}[]=#$%&/' > TextoFinal.txt
 
+  #cat CopiaArchivo1.txt | tr -d '.;:?¡!¿*+-´"#$%&/()=' > TextoFinal.txt
   rm "$archivoCopia"
+  rm "$archivoCopia1"
 
   VerificarSiExisteArchivo "$archivoCopia"
   VerificarSiExisteArchivo "$archivoCopia1"
+  VerificarSiExisteArchivo "$archivoFinal"
 
   echo " "
-  echo "Contenido a Minusculas y sin Acentos"
-  MostrarContenidoArchivo $archivoCopia1
+  echo "Contenido a Minusculas, sin Acentos y sin signos de Puntuacion"
+  #MostrarContenidoArchivo $archivoFinal
+
+}
+
+ObtenerFrecuenciasPalabras(){
+  archivo=$1
+  echo "Desde la ultima funcion"
+  MostrarContenidoArchivo $archivo
+
+ PalabrasFrecuentes=($(cat "$archivo" | tr -s '[:space:]' '\n' | grep -oE '\w+' | sort | uniq -c | sort -nr | head -n 5 | awk '{print $2}'))
+ Frecuencia=($(cat "$archivo" | tr -s '[:space:]' '\n' | grep -oE '\w+' | sort | uniq -c | sort -nr | head -n 5 | awk '{print $1}'))
+ 
+ for ((i=0; i<${#PalabrasFrecuentes[@]}; i++))
+ do
+   echo "La palabra: [${PalabrasFrecuentes[i]}] se repite: ${Frecuencia[i]} veces."
+ done
+
 }
 
 # Llamada de las funciones.
 VerificarSiExisteArchivo MiTexto.txt
 MostrarContenidoArchivo MiTexto.txt
 GenerarCopiaDelArchivo MiTexto.txt
+ObtenerFrecuenciasPalabras TextoFinal.txt

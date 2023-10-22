@@ -227,9 +227,12 @@ ObtenerFrecuenciasLetras(){
 # Llamada de las funciones.
 Presentacion
 #--------------------------------------------
-# Esteblecemos una variable la cual almacenara el nombre del archivo que queramos modificar, se hizo esto para evitar estar cambiando el nombre
+# Esteblecemos una variable la cual almacenara el nombre del archivo que queramos modificar, este sera ingresado por consola, se hizo esto para evitar estar cambiando el nombre
 # en cada linea donde se necesite el archivo.
-nombreDelArchivo="MiTexto.txt"
+echo -e "${amarillo}${negrita}Ingresa el nombre del archivo: ${reset}"
+read nombreArchivo
+
+nombreDelArchivo=$nombreArchivo
 # Se llama a la funcion VerificarSiExisteArchivo para ver si existe el archivo.
 VerificarSiExisteArchivo "$nombreDelArchivo"
 contador=$?

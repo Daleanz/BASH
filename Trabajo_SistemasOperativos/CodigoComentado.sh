@@ -15,7 +15,7 @@ negrita="\e[1m"
 
 Presentacion(){
   echo "*************************************** Datos del Grupo *************************************************************************"
-  echo "Integrante 1: Jeison Salas Colma --> Rut: 15.306.099-1"
+  echo "Integrante 1: Jeison Salas Coloma --> Rut: 15.306.099-1"
   echo "Integrante 2: Roberto Barros Gutiérrez --> Rut: 20.759.294-3"
   echo "Integrante 3: David Moya Aravena --> Rut: 21.017.382-k"
 

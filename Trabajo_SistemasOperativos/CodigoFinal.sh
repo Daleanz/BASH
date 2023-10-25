@@ -13,8 +13,8 @@ Presentacion(){
 }
 
 # ----------------------------------------------------- DECLARACION DE FUNCIONES --------------------------------------------------------
-# Primera Funcion: Veirica si el archivo del cual queremos hacer uso existe (Archivo ingresado por parametro), mostrara mensajes correspondientes a si existe o no existe.
-#                  Tambien retorna un (1) o (0), donde se le hara uso en la linea NUMERO LINEA
+# Primera Funcion: Verifica si el archivo del cual queremos hacer uso existe (Archivo ingresado por parametro), mostrara mensajes correspondientes a si existe o no existe.
+#                  Tambien retorna un (1) o (0), donde se le hara uso en la linea 193.
 VerificarSiExisteArchivo(){
   archivo=$1 
   # Linea 29: se hace uso del operador (-f) para saber si nuestro archivo existe, y ademas para saber si es un archivo regular.

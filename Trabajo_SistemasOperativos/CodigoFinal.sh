@@ -75,7 +75,7 @@ GenerarCopiaDelArchivo(){
   cat $nombreArchivo | sed 's/á/a/g; s/é/e/g; s/í/i/g; s/ó/o/g; s/ú/u/g;
                             s/Á/A/g; s/É/E/g; s/Í/I/g; s/Ó/O/g; s/Ú/U/g;
                             s/ä/a/g; s/ë/e/g; s/ï/i/g; s/ö/o/g; s/ü/u/g;
-                            s/Ä/A/g; s/Ë/E/g; s/Ï/I/g; s/Ö/O/g; s/Ü/U/g/U/gm;   ' > CopiaArchivo.txt
+                            s/Ä/A/g; s/Ë/E/g; s/Ï/I/g; s/Ö/O/g; s/Ü/U/g;' > CopiaArchivo.txt
 
   # Se usa el comando (cp) para generar el segundo archivo de transicion.
   cp "$archivoCopia" "$archivoCopia1" 
@@ -86,12 +86,7 @@ GenerarCopiaDelArchivo(){
 
   VerificarSiExisteArchivo "$archivoCopia1"
 
-  # Linea 127 : hacemos uso de la funcion (cat) en conjunto de la funcion (tr -d) haciendo uso del operador de tuberia (|), esto lo que hace
-  # es pasar por (" "), los simbolos, en este caso son los de puntuacion los cuales seran eliminados, (>) redirige la salida del comando
-  # aplicadio anteriormente hacia el archivo final "TextoFinal.txt", el que contendra ya la ultima modificacion, para solo tener las palabras
-  # en el archivo.
-  #
-  # Se hace uso de los comandos en conjunto (cat y tr), donde se pasa el archivo a modificar y donde (tr) hara uso de la opcion (-d) para poder eliminar los "signos de puntuacion" en este caso, 
+  # Se hace uso de los comandos en conjunto (cat y tr) junto al operado de tuberia (|), donde se pasa el archivo a modificar y donde (tr) hara uso de la opcion (-d) para poder eliminar los "signos de puntuacion" en este caso, 
   # para finalmente almacanear la modificacion en el archivo final.
   cat CopiaArchivo1.txt | tr -d '.,:;¿?¡!+-_*"(){}[]=#$%&/' > TextoFinal.txt
 
@@ -144,11 +139,6 @@ ObtenerFrecuenciasPalabras(){
   echo " "
 }
 
-# Quinta Funcion: se encarga de obtener las las letras que se repiten con mas frecuencia en el archivo, ademas tambien obtener la frecuencia
-# de cada una de ellas, crea dos vectores donde el primer vector almacena las letras mas repetidas y el segundo vector almacena la
-# frecuencia de estas letras en el archivo de texto, para finalmente hacer uso de un ciclo for con el que se mostrara la informacion por
-# consola al usuario.
-#
 # Quinta Funcion: Obtendra y mostrara las letras que mas se repiten del documento junto a su frecuencia correspondiente.
 #                 Hara uso de un primer vector el cual almacenara las palabras mas repetidas del documento.
 #                 Hara uso de un segundo vector el cual almacenara la frecuencias de las palabras mas repetidas del documento.
@@ -192,10 +182,6 @@ nombreDelArchivo=$nombreArchivo
 VerificarSiExisteArchivo "$nombreDelArchivo"
 contador=$?
 
-# Se hace uso de una estructura condicional, que dependera del valor que obtenga el contador, el cual sera el valor que retorne la funcion
-# VerificarSiExisteArchivo y contador haciendo uso de ($?) almacenara el dato retornado por la funcion, que se definio al principio como
-# booleano = 1, o booleano = 0, dependiendo del caso.
-#
 # Se crea una variable (contador) la cual hace uso de la variable espcial ($?) la cual almacenara el valor de retorno de la funcion "VerificarSiExisteArchivo",
 # para luego ser usado en la estructura condicional (If, else), para poder mostrar de manera mas clara la informacion al usuario.
 if [ "$contador" -eq 1 ]; then
